@@ -26,188 +26,269 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        .section-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem; }
+        .section-card { background: #0f172a; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 2rem; transition: all 0.2s ease; }
         #canvas-container { cursor: grab; }
         #canvas-container:active { cursor: grabbing; }
     </style>
 </head>
-<body class="font-sans antialiased flex flex-col md:flex-row min-h-screen">
+<body class="font-sans antialiased flex flex-col min-h-screen">
 
-    <aside class="w-full md:w-64 bg-slate-900 border-r border-slate-800 p-6 flex-shrink-0 md:h-screen md:sticky md:top-0 overflow-y-auto">
-        <h1 class="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-4">Anatomía Ósea</h1>
-        <nav class="space-y-2 text-sm text-slate-400">
-            <a href="#generalidades" class="block hover:text-white transition-colors">1. Introducción y Componentes</a>
-            <a href="#clasificacion" class="block hover:text-white transition-colors">2. Clasificación de Huesos</a>
-            <a href="#tejido" class="block hover:text-white transition-colors">3. Hueso Compacto y Esponjoso</a>
-            <a href="#hueso-largo" class="block hover:text-white font-semibold text-slate-200 transition-colors">4. Estructura Hueso Largo (3D + Info)</a>
-            <a href="#organizacion" class="block hover:text-white transition-colors">5. Esqueleto Axial y Apendicular</a>
-            <a href="#reparos" class="block hover:text-white transition-colors">6. Reparos Óseos</a>
-            <a href="#craneo-cara" class="block hover:text-white transition-colors">7. Cráneo y Cara (3D)</a>
-            <a href="#columna" class="block hover:text-white transition-colors">8. Columna Vertebral</a>
-            <a href="#torax" class="block hover:text-white transition-colors">9. Tórax</a>
-            <a href="#miembros-sup" class="block hover:text-white transition-colors">10. Cintura Escapular y Miembros Sup.</a>
-            <a href="#miembros-inf" class="block hover:text-white transition-colors">11. Cintura Pélvica y Miembros Inf.</a>
-            <a href="#aistudio" class="block hover:text-white transition-colors">12. Tutor Inteligente</a>
-        </nav>
-    </aside>
+    <!-- Header Móvil y Barra Superior -->
+    <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-50 flex items-center justify-between md:hidden">
+        <h1 class="text-lg font-bold text-white">Anatomía Ósea</h1>
+        <button id="menu-btn" class="bg-slate-800 text-slate-200 px-3 py-1.5 rounded-lg text-sm border border-slate-700">
+            Menú Temario
+        </button>
+    </header>
 
-    <main class="flex-1 p-6 md:p-12 overflow-x-hidden">
-        
-        <section id="generalidades" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">1. Introducción y Componentes del Sistema Óseo</h2>
-            <p class="text-slate-300">El sistema óseo adulto consta de 206 huesos. Está compuesto por tejido óseo, cartílago, médula ósea y el periostio. Sus funciones incluyen soporte, protección, movimiento, homeostasis mineral, hematopoyesis y almacenamiento de energía.</p>
-        </section>
+    <div class="flex flex-col md:flex-row flex-1">
+        <!-- Barra lateral (Sidebar) - Oculta en móvil por defecto, fija en desktop -->
+        <aside id="sidebar" class="w-full md:w-64 bg-slate-900 border-r border-slate-800 p-6 flex-shrink-0 md:h-screen md:sticky md:top-0 overflow-y-auto hidden md:block z-40">
+            <h1 class="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-4 hidden md:block">Anatomía Ósea</h1>
+            <nav class="space-y-2 text-sm text-slate-400">
+                <a href="#generalidades" class="block hover:text-white transition-colors py-1">1. Introducción y Componentes</a>
+                <a href="#clasificacion" class="block hover:text-white transition-colors py-1">2. Clasificación de Huesos</a>
+                <a href="#tejido" class="block hover:text-white transition-colors py-1">3. Hueso Compacto y Esponjoso</a>
+                <a href="#hueso-largo" class="block hover:text-white font-semibold text-slate-200 transition-colors py-1">4. Estructura Hueso Largo (3D)</a>
+                <a href="#organizacion" class="block hover:text-white transition-colors py-1">5. Esqueleto Axial y Apendicular</a>
+                <a href="#reparos" class="block hover:text-white transition-colors py-1">6. Reparos Óseos</a>
+                <a href="#craneo-cara" class="block hover:text-white transition-colors py-1">7. Cráneo y Cara (3D)</a>
+                <a href="#columna" class="block hover:text-white transition-colors py-1">8. Columna Vertebral</a>
+                <a href="#torax" class="block hover:text-white transition-colors py-1">9. Tórax</a>
+                <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">10. Cintura Escapular y Miembros Sup.</a>
+                <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">11. Cintura Pélvica y Miembros Inf.</a>
+                <a href="#aistudio" class="block hover:text-white transition-colors py-1">12. Tutor Inteligente</a>
+            </nav>
+        </aside>
 
-        <section id="clasificacion" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">2. Clasificaciones de los tipos de huesos</h2>
-            <ul class="list-disc pl-5 text-slate-300 space-y-2">
-                <li><strong>Largos:</strong> Mayor longitud que anchura (ej. fémur, húmero).</li>
-                <li><strong>Cortos:</strong> Forma cúbica, longitud y anchura similares (ej. carpos, tarsos).</li>
-                <li><strong>Planos:</strong> Delgados, proveen protección y áreas de inserción (ej. esternón, cráneo).</li>
-                <li><strong>Irregulares:</strong> Formas complejas (ej. vértebras).</li>
-                <li><strong>Sesamoideos:</strong> Se desarrollan dentro de tendones (ej. rótula).</li>
-            </ul>
-        </section>
-
-        <section id="tejido" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">3. Hueso Compacto y Esponjoso</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-800 p-4 rounded-lg">
-                    <h3 class="font-bold text-slate-200">Hueso Compacto</h3>
-                    <p class="text-sm text-slate-400 mt-1">Capa externa dura, formada por osteonas. Proporciona protección y soporte estructural.</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-lg">
-                    <h3 class="font-bold text-slate-200">Hueso Esponjoso</h3>
-                    <p class="text-sm text-slate-400 mt-1">Ubicado en el interior (epífisis). Formado por trabéculas; alberga la médula ósea roja.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="hueso-largo" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">4. Partes de un Hueso Largo Típico</h2>
-            <p class="text-sm text-slate-400 mb-4">Interactúa con el modelo 3D y revisa los conceptos clave a continuación para dominar el tema.</p>
+        <!-- Contenido Principal -->
+        <main class="flex-1 p-4 md:p-12 overflow-x-hidden">
             
-            <div class="w-full h-[450px] bg-slate-950 border border-slate-700 rounded-xl relative overflow-hidden flex flex-col md:flex-row shadow-lg mb-6">
-                <div class="absolute top-4 left-4 z-10">
-                    <button id="btn-xray" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 px-3 py-1.5 rounded-lg text-sm transition-colors shadow-lg">
-                        Activar Rayos X
-                    </button>
+            <!-- BUSCADOR EN LA PARTE PRINCIPAL -->
+            <div class="mb-8 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-lg">
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="🔍 Busca cualquier tema, hueso, articulación o concepto (ej. fémur, cóndilo, diáfisis)..." 
+                           class="w-full bg-slate-950 text-slate-200 text-sm md:text-base rounded-lg px-4 py-3 pl-10 outline-none border border-slate-700 focus:border-slate-500 transition-colors">
+                    <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <div id="canvas-container" class="w-full md:w-2/3 h-full"></div>
-                <div class="w-full md:w-1/3 h-full bg-slate-900 border-l border-slate-800 p-4 overflow-y-auto">
-                    <div id="data-state" class="hidden flex-col gap-4">
-                        <h3 id="info-name" class="text-xl font-bold text-white">Nombre</h3>
-                        <span id="info-tissue" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded inline-block w-max">Tejido</span>
-                        <p id="info-desc" class="text-sm text-slate-400"></p>
-                    </div>
-                    <div id="empty-state" class="h-full flex items-center justify-center text-slate-500 text-sm text-center">
-                        Haz clic en una parte del hueso para ver sus detalles.
-                    </div>
-                </div>
+                <div id="search-count" class="text-xs text-slate-400 mt-2 px-1"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                    <h3 class="font-bold text-white mb-2">Epífisis (Proximal y Distal)</h3>
-                    <p class="text-sm text-slate-300">Extremos proximal y distal del hueso. Están formados por hueso esponjoso en su interior y cubiertos externamente por cartílago hialino para reducir la fricción en las articulaciones.</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                    <h3 class="font-bold text-white mb-2">Diáfisis</h3>
-                    <p class="text-sm text-slate-300">Es el cuerpo o porción cilíndrica central del hueso largo. Está compuesta principalmente por una capa gruesa de hueso compacto que otorga gran resistencia a la flexión.</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                    <h3 class="font-bold text-white mb-2">Metáfisis</h3>
-                    <p class="text-sm text-slate-300">Zona de unión entre la epífisis y la diáfisis. En etapa de crecimiento contiene la placa epifisaria, responsable del alargamiento del hueso.</p>
-                </div>
-                <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
-                    <h3 class="font-bold text-white mb-2">Cavidad Medular y Periostio</h3>
-                    <p class="text-sm text-slate-300">La cavidad medular alberga la médula ósea. El <strong>periostio</strong> es la membrana de tejido conectivo que recubre la superficie externa, permitiendo nutrición y reparación.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="organizacion" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">5. Organización del Sistema: Axial y Apendicular</h2>
-            <p class="text-slate-300 mb-2"><strong>Esqueleto Axial (80 huesos):</strong> Cráneo, columna vertebral, costillas y esternón. Eje central del cuerpo.</p>
-            <p class="text-slate-300"><strong>Esqueleto Apendicular (126 huesos):</strong> Miembros superiores e inferiores, y las cinturas (escapular y pélvica) que los unen al eje.</p>
-        </section>
-
-        <section id="reparos" class="section-card border-slate-500 bg-slate-900 shadow-lg">
-            <h2 class="text-2xl font-bold text-white mb-4">6. Descripción de los Principales Reparos Óseos</h2>
-            <ul class="list-disc pl-5 text-slate-300 space-y-2">
-                <li><strong>Cóndilo:</strong> Protuberancia articular redondeada.</li>
-                <li><strong>Fosa:</strong> Depresión poco profunda.</li>
-                <li><strong>Tuberosidad:</strong> Proyección rugosa grande para inserción muscular.</li>
-                <li><strong>Foramen:</strong> Orificio a través del cual pasan vasos o nervios.</li>
-            </ul>
-        </section>
-
-        <section id="craneo-cara" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">7. Huesos del Cráneo y Cara</h2>
-            <p class="text-slate-300"><strong>Cráneo (8):</strong> Frontal, 2 parietales, 2 temporales, occipital, esfenoides, etmoides.</p>
-            <p class="text-slate-300 mb-6"><strong>Cara (14):</strong> 2 nasales, 2 maxilares, 2 cigomáticos, mandíbula, 2 lagrimales, 2 palatinos, 2 cornetes inferiores, vómer.</p>
-            
-            <div class="w-full bg-slate-950 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
-                <div class="relative w-full h-[400px] md:h-[500px]">
-                    <iframe title="Cráneo" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/dac32099ceab420193cf7a6efe10cdf9/embed?autostart=0&ui_theme=dark"> </iframe>
-                </div>
-                <div class="bg-slate-900 p-3 text-xs text-center text-slate-500 border-t border-slate-800">
-                    <a href="https://sketchfab.com/3d-models/craneo-dac32099ceab420193cf7a6efe10cdf9" target="_blank" rel="nofollow" class="font-bold text-slate-300 hover:text-white transition-colors">Cráneo</a> by <a href="https://sketchfab.com/3D_UTPL" target="_blank" rel="nofollow" class="font-bold text-slate-300 hover:text-white transition-colors">3D_UTPL</a> on Sketchfab
-                </div>
-            </div>
-        </section>
-
-        <section id="columna" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">8. Columna Vertebral</h2>
-            <p class="text-slate-300">Consta de 7 cervicales, 12 torácicas, 5 lumbares, sacro (5 fusionadas) y cóccix (4 fusionadas). Una vértebra tipo tiene cuerpo, arco vertebral (pedículos y láminas) y 7 apófisis (1 espinosa, 2 transversas, 4 articulares).</p>
-        </section>
-
-        <section id="torax" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">9. Tórax</h2>
-            <p class="text-slate-300"><strong>Estructura:</strong> Esternón (manubrio, cuerpo, apófisis xifoides) y 12 pares de costillas (7 verdaderas, 3 falsas, 2 flotantes).</p>
-        </section>
-
-        <section id="miembros-sup" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">10. Cintura Escapular y Miembros Superiores</h2>
-            <p class="text-slate-300 mb-2"><strong>Cintura Escapular:</strong> Clavícula y Escápula.</p>
-            <p class="text-slate-300"><strong>Miembro Superior:</strong> Húmero, cúbito, radio, carpos (8), metacarpos (5), falanges (14).</p>
-            <div class="mt-4 bg-slate-800 p-3 rounded-lg border border-slate-700">
-                <strong>Articulaciones (Huesos):</strong> Esternoclavicular (Esternón + Clavícula), Acromioclavicular (Escápula + Clavícula), Glenohumeral (Escápula + Húmero).
-            </div>
-        </section>
-
-        <section id="miembros-inf" class="section-card">
-            <h2 class="text-2xl font-bold text-white mb-4">11. Cintura Pélvica y Miembros Inferiores</h2>
-            <p class="text-slate-300 mb-2"><strong>Cintura Pélvica:</strong> Huesos coxales (fusión de ilion, isquion y pubis).</p>
-            <p class="text-slate-300"><strong>Miembro Inferior:</strong> Fémur, rótula, tibia, peroné, tarsos (7), metatarsos (5), falanges (14).</p>
-            <div class="mt-4 bg-slate-800 p-3 rounded-lg border border-slate-700">
-                <strong>Articulaciones (Huesos):</strong> Sacroilíaca (Sacro + Coxal), Sínfisis Púbica (Pubis derecho + Pubis izquierdo), Coxofemoral (Coxal + Fémur).
-            </div>
-        </section>
-
-        <section id="aistudio" class="section-card border-slate-600 bg-slate-900">
-            <h2 class="text-2xl font-bold text-white mb-4">12. Tutor de Anatomía con Inteligencia Artificial</h2>
-            <p class="text-slate-300 mb-4">Escribe cualquier duda sobre los huesos, articulaciones o reparos óseos para consultarla con el asistente inteligente:</p>
-            
-            <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-xl mx-auto flex flex-col gap-3">
-                <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span class="text-sm font-bold text-white">Asistente de Terapia Física</span>
-                </div>
+            <!-- SECCIONES DE LA GUÍA -->
+            <div id="content-container">
                 
-                <textarea id="ai-query-input" rows="3" placeholder="Ej. ¿Cuáles son los reparos óseos principales del fémur?" 
-                          class="w-full bg-slate-900 text-slate-200 text-sm rounded-lg p-3 outline-none border border-slate-700 focus:border-slate-500 resize-none"></textarea>
-                
-                <button id="ai-launch-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
-                    Consultar con IA
-                </button>
+                <section id="generalidades" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">1. Introducción y Componentes del Sistema Óseo</h2>
+                    <p class="text-slate-300">El sistema óseo adulto consta de 206 huesos. Está compuesto por tejido óseo, cartílago, médula ósea y el periostio. Sus funciones incluyen soporte, protección, movimiento, homeostasis mineral, hematopoyesis y almacenamiento de energía.</p>
+                </section>
+
+                <section id="clasificacion" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">2. Clasificaciones de los tipos de huesos</h2>
+                    <ul class="list-disc pl-5 text-slate-300 space-y-2">
+                        <li><strong>Largos:</strong> Mayor longitud que anchura (ej. fémur, húmero, tibia).</li>
+                        <li><strong>Cortos:</strong> Forma cúbica, longitud y anchura similares (ej. huesos del carpo y tarso).</li>
+                        <li><strong>Planos:</strong> Delgados, proveen protección y amplia superficie de inserción (ej. esternón, escápula, huesos del cráneo).</li>
+                        <li><strong>Irregulares:</strong> Formas complejas que no encajan en las otras categorías (ej. vértebras, hueso esfenoides).</li>
+                        <li><strong>Sesamoideos:</strong> Se desarrollan dentro de ciertos tendones para reducir la fricción (ej. rótula / patela).</li>
+                    </ul>
+                </section>
+
+                <section id="tejido" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">3. Hueso Compacto y Hueso Esponjoso</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-slate-200">Hueso Compacto</h3>
+                            <p class="text-sm text-slate-400 mt-1">Capa externa densa y dura. Está compuesto por unidades estructurales llamadas osteonas (sistemas de Havers). Proporciona gran protección y soporte estructural resistiendo las fuerzas de tensión.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-slate-200">Hueso Esponjoso</h3>
+                            <p class="text-sm text-slate-400 mt-1">Ubicado en el interior de los huesos (especialmente en las epífisis). Está formado por una red de trabéculas óseas que albergan la médula ósea roja, reduciendo el peso general del esqueleto.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="hueso-largo" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">4. Partes de un Hueso Largo Típico</h2>
+                    <p class="text-sm text-slate-400 mb-4">Interactúa con el modelo 3D táctil y revisa los conceptos clave a continuación:</p>
+                    
+                    <div class="w-full h-[400px] md:h-[450px] bg-slate-950 border border-slate-700 rounded-xl relative overflow-hidden flex flex-col md:flex-row shadow-lg mb-6">
+                        <div class="absolute top-4 left-4 z-10">
+                            <button id="btn-xray" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 px-3 py-1.5 rounded-lg text-sm transition-colors shadow-lg">
+                                Activar Rayos X
+                            </button>
+                        </div>
+                        <div id="canvas-container" class="w-full md:w-2/3 h-full"></div>
+                        <div class="w-full md:w-1/3 h-full bg-slate-900 border-l border-slate-800 p-4 overflow-y-auto">
+                            <div id="data-state" class="hidden flex-col gap-4">
+                                <h3 id="info-name" class="text-xl font-bold text-white">Nombre</h3>
+                                <span id="info-tissue" class="text-xs bg-slate-800 text-slate-300 px-2 py-1 rounded inline-block w-max">Tejido</span>
+                                <p id="info-desc" class="text-sm text-slate-400"></p>
+                            </div>
+                            <div id="empty-state" class="h-full flex items-center justify-center text-slate-500 text-sm text-center">
+                                Toca o haz clic en una parte del hueso 3D para ver sus detalles.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-white mb-2">Epífisis (Proximal y Distal)</h3>
+                            <p class="text-sm text-slate-300">Extremos superior e inferior del hueso. Formados por hueso esponjoso y cubiertos de cartílago hialino articular.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-white mb-2">Diáfisis</h3>
+                            <p class="text-sm text-slate-300">Cuerpo cilíndrico central compuesto por hueso compacto. Otorga gran resistencia mecánica.</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-white mb-2">Metáfisis</h3>
+                            <p class="text-sm text-slate-300">Zona de transición. Contiene la placa epifisaria (crecimiento longitudinal en menores).</p>
+                        </div>
+                        <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                            <h3 class="font-bold text-white mb-2">Cavidad Medular y Periostio</h3>
+                            <p class="text-sm text-slate-300">La cavidad almacena médula ósea. El periostio reviste externamente el hueso para su nutrición.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="organizacion" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">5. Organización del Sistema: Axial y Apendicular</h2>
+                    <div class="space-y-3">
+                        <p class="text-slate-300"><strong>Esqueleto Axial (80 huesos):</strong> Forma el eje central del cuerpo. Incluye el cráneo, la columna vertebral, el esternón y las costillas. Su función principal es la protección de órganos vitales.</p>
+                        <p class="text-slate-300"><strong>Esqueleto Apendicular (126 huesos):</strong> Compuesto por los huesos de los miembros superiores e inferiores, además de las cinturas escapular y pélvica. Facilita el movimiento.</p>
+                    </div>
+                </section>
+
+                <section id="reparos" class="searchable-section section-card border-slate-500 bg-slate-900 shadow-lg">
+                    <h2 class="text-2xl font-bold text-white mb-4">6. Descripción de los Principales Reparos Óseos</h2>
+                    <ul class="list-disc pl-5 text-slate-300 space-y-2">
+                        <li><strong>Cóndilo:</strong> Protuberancia articular redondeada que encaja en otra cavidad.</li>
+                        <li><strong>Fosa:</strong> Depresión o cavidad poco profunda en la superficie ósea.</li>
+                        <li><strong>Tuberosidad:</strong> Proyección rugosa y grande, ideal para la inserción de tendones y músculos.</li>
+                        <li><strong>Foramen (Agujero):</strong> Abertura u orificio por donde discurren vasos sanguíneos y nervios.</li>
+                        <li><strong>Trocánter:</strong> Prominencia grande y áspera exclusiva del fémur.</li>
+                    </ul>
+                </section>
+
+                <section id="craneo-cara" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">7. Huesos del Cráneo y Cara</h2>
+                    <p class="text-slate-300"><strong>Cráneo (8 huesos):</strong> Frontal (1), Parietales (2), Temporales (2), Occipital (1), Esfenoides (1), Etmoides (1).</p>
+                    <p class="text-slate-300 mb-6"><strong>Cara (14 huesos):</strong> Nasales (2), Maxilares superiores (2), Cigomáticos / Malares (2), Mandíbula (1), Lagrimales / Unguis (2), Palatinos (2), Cornetes inferiores (2), Vómer (1).</p>
+                    
+                    <div class="w-full bg-slate-950 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
+                        <div class="relative w-full h-[350px] md:h-[500px]">
+                            <iframe title="Cráneo" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/dac32099ceab420193cf7a6efe10cdf9/embed?autostart=0&ui_theme=dark"> </iframe>
+                        </div>
+                        <div class="bg-slate-900 p-3 text-xs text-center text-slate-500 border-t border-slate-800">
+                            <a href="https://sketchfab.com/3d-models/craneo-dac32099ceab420193cf7a6efe10cdf9" target="_blank" rel="nofollow" class="font-bold text-slate-300 hover:text-white transition-colors">Cráneo</a> by <a href="https://sketchfab.com/3D_UTPL" target="_blank" rel="nofollow" class="font-bold text-slate-300 hover:text-white transition-colors">3D_UTPL</a> on Sketchfab
+                        </div>
+                    </div>
+                </section>
+
+                <section id="columna" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">8. Columna Vertebral</h2>
+                    <p class="text-slate-300 mb-3">Consta de 33 vértebras distribuidas en 5 regiones: 7 cervicales, 12 torácicas, 5 lumbares, 5 sacras (fusionadas en el sacro) y 4 coxígeas (fusionadas en el cóccix).</p>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                        <h3 class="font-bold text-white mb-1">Configuración de una Vértebra Tipo:</h3>
+                        <p class="text-sm text-slate-300">Presenta un <strong>cuerpo vertebral</strong> anterior (soporte de peso), un <strong>arco vertebral</strong> posterior (formado por pedículos y láminas que delimitan el foramen vertebral) y <strong>7 apófisis</strong> (1 espinosa, 2 transversas y 4 articulares).</p>
+                    </div>
+                </section>
+
+                <section id="torax" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">9. Tórax Óseo</h2>
+                    <p class="text-slate-300"><strong>Estructura:</strong> Compuesto por el <strong>esternón</strong> (dividido en manubrio, cuerpo y apófisis xifoides) y 12 pares de <strong>costillas</strong>: 7 verdaderas (articulan directo al esternón), 3 falsas (unen al cartílago superior) y 2 flotantes (sin conexión anterior).</p>
+                </section>
+
+                <section id="miembros-sup" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">10. Cintura Escapular y Miembros Superiores</h2>
+                    <p class="text-slate-300 mb-2"><strong>Cintura Escapular:</strong> Clavícula y Escápula (omóplato).</p>
+                    <p class="text-slate-300 mb-4"><strong>Miembros Superiores:</strong> Húmero, Radio, Cúbito (Ulna), Huesos del carpo (8), Metacarpos (5) y Falanges (14).</p>
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-sm">
+                        <strong>Articulaciones de la Cintura (Huesos):</strong><br>
+                        • Esternoclavicular: Manubrio del esternón + Clavícula.<br>
+                        • Acromioclavicular: Acromion de la escápula + Clavícula.<br>
+                        • Glenohumeral: Cavidad glenoidea de la escápula + Cabeza del húmero.
+                    </div>
+                </section>
+
+                <section id="miembros-inf" class="searchable-section section-card">
+                    <h2 class="text-2xl font-bold text-white mb-4">11. Cintura Pélvica y Miembros Inferiores</h2>
+                    <p class="text-slate-300 mb-2"><strong>Cintura Pélvica:</strong> Huesos coxales (fusión de ilion, isquion y pubis).</p>
+                    <p class="text-slate-300 mb-4"><strong>Miembros Inferiores:</strong> Fémur, Rótula (patela), Tibia, Peroné (fíbula), Tarsos (7), Metatarsos (5) y Falanges (14).</p>
+                    <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-sm">
+                        <strong>Articulaciones de la Cintura (Huesos):</strong><br>
+                        • Sacroilíaca: Sacro + Hueso coxal (ilion).<br>
+                        • Sínfisis Púbica: Pubis derecho + Pubis izquierdo.<br>
+                        • Coxofemoral (Cadera): Acetábulo del coxal + Cabeza del fémur.
+                    </div>
+                </section>
+
+                <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
+                    <h2 class="text-2xl font-bold text-white mb-4">12. Tutor de Anatomía con Inteligencia Artificial</h2>
+                    <p class="text-slate-300 mb-4">Escribe cualquier duda sobre los huesos, articulaciones o reparos óseos para consultarla al instante con el asistente inteligente:</p>
+                    
+                    <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-xl mx-auto flex flex-col gap-3">
+                        <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span class="text-sm font-bold text-white">Asistente de Terapia Física</span>
+                        </div>
+                        
+                        <textarea id="ai-query-input" rows="3" placeholder="Ej. ¿Cuáles son los reparos óseos principales del fémur?" 
+                                  class="w-full bg-slate-900 text-slate-200 text-sm rounded-lg p-3 outline-none border border-slate-700 focus:border-slate-500 resize-none"></textarea>
+                        
+                        <button id="ai-launch-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+                            Consultar con IA
+                        </button>
+                    </div>
+                </section>
+
             </div>
-        </section>
+        </main>
+    </div>
 
-    </main>
-
+    <!-- Script de Interactividad (Buscador, Menú Móvil y 3D) -->
     <script>
-        // --- LÓGICA DE CONSULTA SEGURA CON IA ---
+        // --- MENÚ MÓVIL DESPLEGABLE ---
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+        });
+        // Cerrar menú en móvil al hacer clic en un enlace del temario
+        sidebar.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if(window.innerWidth < 768) {
+                    sidebar.classList.add('hidden');
+                }
+            });
+        });
+
+        // --- BUSCADOR EN TIEMPO REAL ---
+        const searchInput = document.getElementById('search-input');
+        const sections = document.querySelectorAll('.searchable-section');
+        const searchCount = document.getElementById('search-count');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            let matches = 0;
+
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if(text.includes(term) || term === '') {
+                    section.style.display = 'block';
+                    matches++;
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+
+            if(term !== '') {
+                searchCount.textContent = `Se encontraron ${matches} secciones coincidentes.`;
+            } else {
+                searchCount.textContent = '';
+            }
+        });
+
+        // --- CONSULTA SEGURA CON IA ---
         document.getElementById('ai-launch-btn').addEventListener('click', () => {
             const query = document.getElementById('ai-query-input').value.trim();
             const promptText = query ? query : "Explícame los puntos clave del sistema óseo para terapia física.";
@@ -217,7 +298,7 @@
             window.open(url, '_blank');
         });
 
-        // --- LÓGICA DEL MODELO 3D (THREE.JS) HUESO LARGO ---
+        // --- MODELO 3D (THREE.JS) HUESO LARGO ---
         const boneData = {
             "epifisis_proximal": { nombre: "Epífisis Proximal", tejido: "Hueso Esponjoso", desc: "Extremo superior del hueso. Provee área para articulaciones y alberga médula ósea roja." },
             "diafisis": { nombre: "Diáfisis", tejido: "Hueso Compacto", desc: "Eje cilíndrico central. Soporta peso y resiste tensión mecánica." },
