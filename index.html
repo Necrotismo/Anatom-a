@@ -253,20 +253,20 @@
                     </div>
                 </section>
 
-                <!-- SECCIÓN DE TUTOR DE IA INTEGRADO EN VIVO -->
+                <!-- SECCIÓN DE TUTOR DE IA INTEGRADO CON RESPUESTAS ESPECÍFICAS -->
                 <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
                     <h2 class="text-2xl font-bold text-white mb-4">12. Tutor Inteligente en Vivo</h2>
-                    <p class="text-slate-300 mb-4">Hazle cualquier pregunta sobre anatomía y te responderá directamente aquí mismo:</p>
+                    <p class="text-slate-300 mb-4">Pregúntame por huesos específicos (ej. <em>húmero</em>, <em>fémur</em>, <em>semilunar</em>, <em>radio</em>) y te daré sus detalles anatómicos:</p>
                     
                     <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-2xl mx-auto flex flex-col gap-3">
                         <div id="chat-box" class="h-64 overflow-y-auto bg-slate-900 p-3 rounded-lg border border-slate-800 flex flex-col gap-2 text-sm">
-                            <div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-max max-w-[85%]">
-                                ¡Hola! Pregúntame sobre reparos óseos, huesos o articulaciones.
+                            <div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">
+                                ¡Hola! Escribe el nombre de un hueso o estructura (como "húmero", "fémur", o "semilunar") para ver su información en detalle.
                             </div>
                         </div>
                         
                         <div class="flex gap-2">
-                            <input type="text" id="ai-user-input" placeholder="Escribe tu duda anatómica..." 
+                            <input type="text" id="ai-user-input" placeholder="Ej. húmero, fémur, semilunar..." 
                                    class="flex-1 bg-slate-900 text-slate-200 text-sm rounded-lg px-3 py-2 outline-none border border-slate-700 focus:border-slate-500">
                             <button id="ai-send-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors">
                                 Enviar
@@ -278,7 +278,7 @@
         </main>
     </div>
 
-    <!-- Script General -->
+    <!-- Script General y Lógica Inteligente del Chat -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
@@ -306,29 +306,45 @@
             searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones.` : '';
         });
 
-        // --- SIMULADOR DE CHAT / IA DIRECTA EN PANTALLA ---
+        // --- MOTOR DE RESPUESTAS ESPECÍFICAS PARA EL CHAT ---
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('ai-user-input');
         const sendBtn = document.getElementById('ai-send-btn');
 
-        async function handleAiquery() {
-            const text = userInput.value.trim();
-            if(!text) return;
+        const baseConocimientoAnatomia = {
+            "húmero": "🦴 **Húmero (Hueso del brazo):** Posee cabeza humeral, cuello quirúrgico, tubérculo mayor (troquiter) y menor (troquín) separados por la corredera bicipital. En su extremo distal destaca la tróclea, el capítulo (cóndilo), la fosa olecraneana y los epicóndilos medial (epitróclea) y lateral.",
+            "fémur": "🦴 **Fémur (Hueso del muslo):** El más largo del cuerpo. Posee cabeza con la fóvea capitis, cuello, trocánter mayor y menor, línea áspera posterior para inserciones musculares, y distalmente los cóndilos medial y lateral junto con la tróclea femoral.",
+            "semilunar": "🦴 **Semilunar (Hueso del carpo):** Hueso corto de la primera fila del carpo (entre el escafoides y el piramidal). Tiene forma de media luna y se articula proximalmente con el radio. Es uno de los huesos del carpo que más frecuentemente sufre luxaciones.",
+            "radio": "🦴 **Radio (Antebrazo lateral):** Hueso largo lateral. Presenta proximalmente una cabeza redondeada en forma de cúpula que articula con el capítulo del húmero y la tuberosidad bicipital. Distalmente posee la apófisis estiloides del radio.",
+            "cúbito": "🦴 **Cúbito / Ulna (Antebrazo medial):** Presenta proximalmente el olécrano (que forma el codo) y la apófisis coronoides, los cuales forman la escotadura troclear que embona perfectamente con la tróclea del húmero.",
+            "escápula": "🦴 **Escápula / Omóplato (Hombro):** Hueso plano triangular. Sus reparos clave son la cavidad glenoidea (articula con el húmero), el acromion, la apófisis coracoides, y la espina de la escápula que divide las fosas supra e infraespinosa.",
+            "clavícula": "🦴 **Clavícula:** Hueso en forma de 'S' italica. Sus extremos son el esternal (que articula con el manubrio del esternón) y el acromial (que articula con el acromion de la escápula). Es clave para la biomecánica de la cintura escapular."
+        };
 
-            chatBox.innerHTML += `<div class="bg-slate-700 text-slate-100 p-2.5 rounded-lg self-end max-w-[85%]">${text}</div>`;
+        async function handleAiquery() {
+            const textoUsuario = userInput.value.trim();
+            if(!textoUsuario) return;
+
+            // Mostrar mensaje del usuario
+            chatBox.innerHTML += `<div class="bg-slate-700 text-slate-100 p-2.5 rounded-lg self-end max-w-[85%]">${textoUsuario}</div>`;
             userInput.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
+            // Buscar coincidencia en la base de conocimiento anatómico
             setTimeout(() => {
-                let respuesta = "Como estudiante de Terapia Física, recuerda que este reparo óseo es clave para la inserción tendinosa y la biomecánica articular.";
-                if(text.toLowerCase().includes('fémur')) {
-                    respuesta = "El fémur incluye reparos clave como el trocánter mayor y menor, la línea áspera y los cóndilos medial y lateral para la articulación de la rodilla.";
-                } else if(text.toLowerCase().includes('cráneo')) {
-                    respuesta = "El cráneo cuenta con el agujero magno, apófisis mastoides y arcos cigomáticos esenciales para inserciones musculares y protección.";
+                let respuestaFinal = "Como estudiante de Terapia Física, recuerda analizar este reparo óseo considerando su función biomecánica, las superficies articulares que lo componen y los tendones que se insertan en él.";
+                
+                const queryLower = textoUsuario.toLowerCase();
+                for (let clave in baseConocimientoAnatomia) {
+                    if (queryLower.includes(clave)) {
+                        respuestaFinal = baseConocimientoAnatomia[clave];
+                        break;
+                    }
                 }
-                chatBox.innerHTML += `<div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">${respuesta}</div>`;
+
+                chatBox.innerHTML += `<div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">${respuestaFinal}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-            }, 600);
+            }, 500);
         }
 
         sendBtn.addEventListener('click', handleAiquery);
