@@ -55,8 +55,8 @@
                 <a href="#craneo-cara" class="block hover:text-white transition-colors py-1">7. Cráneo, Cara y Reparos (3D)</a>
                 <a href="#columna" class="block hover:text-white transition-colors py-1">8. Columna Vertebral y Reparos</a>
                 <a href="#torax" class="block hover:text-white transition-colors py-1">9. Tórax y Reparos</a>
-                <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">10. Cintura Escapular y Miembros Sup. (Manos)</a>
-                <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">11. Cintura Pélvica y Miembros Inf. (Pies)</a>
+                <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">10. Cintura Escapular y Miembros Sup.</a>
+                <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">11. Cintura Pélvica y Miembros Inf.</a>
                 <a href="#aistudio" class="block hover:text-white transition-colors py-1">12. Diccionario y Asistente en Vivo</a>
             </nav>
         </aside>
@@ -67,7 +67,7 @@
             <!-- Buscador -->
             <div class="mb-8 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-lg">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="🔍 Busca cualquier hueso, reparo, carpo, tarso o estructura..." 
+                    <input type="text" id="search-input" placeholder="🔍 Busca cualquier reparo, hueso, carpo, tarso o estructura..." 
                            class="w-full bg-slate-950 text-slate-200 text-sm md:text-base rounded-lg px-4 py-3 pl-10 outline-none border border-slate-700 focus:border-slate-500 transition-colors">
                     <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
@@ -84,7 +84,7 @@
                     <h2 class="text-2xl font-bold text-white mb-4">2. Clasificaciones de los tipos de huesos</h2>
                     <ul class="list-disc pl-5 text-slate-300 space-y-2">
                         <li><strong>Largos:</strong> Mayor longitud que anchura (ej. fémur, húmero, tibia).</li>
-                        <li><strong>Cortos:</strong> Forma cúbica, longitud y anchura similares (ej. huesos del carpo y tarso).</li>
+                        <li><strong>Cortos:</strong> Forma cúbica, longitud y anchura similares (ej. carpos, tarsos).</li>
                         <li><strong>Planos:</strong> Delgados, proveen protección y superficie de inserción (ej. esternón, cráneo, escápula).</li>
                         <li><strong>Irregulares:</strong> Formas complejas (ej. vértebras, esfenoides).</li>
                         <li><strong>Sesamoideos:</strong> Se desarrollan dentro de tendones (ej. rótula).</li>
@@ -263,17 +263,17 @@
                 <!-- SECCIÓN DE DICCIONARIO Y ASISTENTE INTELIGENTE -->
                 <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
                     <h2 class="text-2xl font-bold text-white mb-4">12. Diccionario y Asistente Anatómico Inteligente</h2>
-                    <p class="text-slate-300 mb-4">Escribe cualquier hueso del cuerpo (incluyendo carpos, tarsos, cráneo o cara) o reparo óseo para consultar su definición técnica instantánea:</p>
+                    <p class="text-slate-300 mb-4">Escribe cualquier hueso, articulación o <strong>reparo óseo</strong> (ej. <em>trocánter</em>, <em>olécrano</em>, <em>acetábulo</em>, <em>epífisis</em>, <em>fosa</em>) para consultar su definición técnica instantánea:</p>
                     
                     <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-2xl mx-auto flex flex-col gap-3">
                         <div id="chat-box" class="h-64 overflow-y-auto bg-slate-900 p-3 rounded-lg border border-slate-800 flex flex-col gap-2 text-sm">
                             <div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">
-                                ¡Hola! Escribe el nombre de cualquier hueso o estructura (ej. <em>escafoides</em>, <em>calcáneo</em>, <em>húmero</em>, <em>vómer</em>) para consultar el diccionario integrado.
+                                ¡Hola! Escribe cualquier hueso o reparo óseo (ej. <em>trocánter</em>, <em>olécrano</em>, <em>acetábulo</em>, <em>cóndilo</em>) para consultar el diccionario integrado.
                             </div>
                         </div>
                         
                         <div class="flex gap-2">
-                            <input type="text" id="ai-user-input" placeholder="Ej. escafoides, calcáneo, carpo, tarso..." 
+                            <input type="text" id="ai-user-input" placeholder="Ej. trocánter, olécrano, acetábulo, cóndilo..." 
                                    class="flex-1 bg-slate-900 text-slate-200 text-sm rounded-lg px-3 py-2 outline-none border border-slate-700 focus:border-slate-500">
                             <button id="ai-send-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors">
                                 Consultar Diccionario
@@ -285,7 +285,7 @@
         </main>
     </div>
 
-    <!-- Script General y Diccionario Anatómico Exhaustivo -->
+    <!-- Script General y Diccionario Anatómico Exhaustivo de Huesos y Reparos -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
@@ -313,12 +313,13 @@
             searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones coincidentes.` : '';
         });
 
-        // --- DICCIONARIO ANATÓMICO LOCAL EXHAUSTIVO ---
+        // --- DICCIONARIO ANATÓMICO LOCAL EXHAUSTIVO (HUESOS Y REPAROS) ---
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('ai-user-input');
         const sendBtn = document.getElementById('ai-send-btn');
 
         const diccionarioAnatomia = {
+            // HUESOS PRINCIPALES
             "húmero": "🦴 **Húmero:** Hueso largo del brazo. Reparos clave: Cabeza humeral, cuello quirúrgico, tubérculo mayor (troquiter) y menor (troquín) con la corredera bicipital, tróclea y capítulo distal.",
             "fémur": "🦴 **Fémur:** Hueso del muslo. Posee cabeza femoral con fóvea capitis, trocánter mayor y menor, línea áspera y cóndilos medial y lateral.",
             "radio": "🦴 **Radio:** Hueso lateral del antebrazo. Posee cabeza radial proximal en cúpula, tuberosidad bicipital y apófisis estiloides distal.",
@@ -328,34 +329,49 @@
             "clavícula": "🦴 **Clavícula:** Hueso en 'S' que conecta el tórax con el hombro mediante articulaciones esternoclavicular y acromioclavicular.",
             "tibia": "🦴 **Tibia:** Hueso principal de la pierna que soporta peso. Posee meseta tibial, tuberosidad anterior y maléolo medial.",
             "peroné": "🦴 **Peroné (Fíbula):** Hueso lateral delgado de la pierna que no soporta peso directo. Su extremo distal forma el maléolo lateral.",
-            "fíbula": "🦴 **Peroné (Fíbula):** Hueso lateral delgado de la pierna que no soporta peso directo. Su extremo distal forma el maléolo lateral.",
-            "rótula": "🦴 **Rótula (Patela):** Hueso sesamoideo más grande del cuerpo ubicado en el tendón del cuádriceps; protege la articulación de la rodilla y aumenta la palanca del cuádriceps.",
-            "patela": "🦴 **Rótula (Patela):** Hueso sesamoideo más grande del cuerpo ubicado en el tendón del cuádriceps.",
-            "carpo": "🦴 **Huesos del Carpo (Muñeca):** 8 huesos cortos distribuidos en dos filas: Proximal (Escafoides, Semilunar, Piramidal, Pisiforme) y Distal (Trapecio, Trapezoide, Hueso Grande, Ganchoso).",
-            "escafoides": "🦴 **Escafoides (Carpo):** Hueso con forma de barco en la fila proximal del carpo. Es el hueso carpiano que se fractura con mayor frecuencia en caídas sobre la mano.",
-            "semilunar": "🦴 **Semilunar (Carpo):** Hueso con forma de media luna en la primera fila del carpo; se articula con el radio y es propenso a luxaciones.",
+            "fíbula": "🦴 **Peroné (Fíbula):** Hueso lateral delgado de la pierna que soporta peso indirecto y forma el maléolo lateral.",
+            "rótula": "🦴 **Rótula (Patela):** Hueso sesamoideo más grande del cuerpo ubicado en el tendón del cuádriceps; protege la rodilla y aumenta la palanca.",
+            "patela": "🦴 **Rótula (Patela):** Hueso sesamoideo dentro del tendón del cuádriceps.",
+            "carpo": "🦴 **Huesos del Carpo (Muñeca):** 8 huesos cortos en dos filas: Proximal (Escafoides, Semilunar, Piramidal, Pisiforme) y Distal (Trapecio, Trapezoide, Hueso Grande, Ganchoso).",
+            "escafoides": "🦴 **Escafoides (Carpo):** Hueso con forma de barco en la fila proximal del carpo; se fractura con frecuencia en caídas con mano extendida.",
+            "semilunar": "🦴 **Semilunar (Carpo):** Hueso con forma de media luna en la primera fila del carpo; se articula con el radio.",
             "piramidal": "🦴 **Piramidal (Carpo):** Hueso carpiano situado en la parte medial de la primera fila del carpo.",
-            "pisiforme": "🦴 **Pisiforme (Carpo):** Hueso sesamoideo pequeño ubicado en la primera fila del carpo, dentro del tendón del músculo flexor ulnar del carpo.",
-            "trapecio": "🦴 **Trapecio (Carpo):** Hueso de la segunda fila del carpo que se articula directamente con el primer metacarpiano (pulgar), permitiendo su oposición.",
-            "trapezoide": "🦴 **Trapezoide (Carpo):** Pequeño hueso carpiano de la fila distal ubicado entre el trapecio y el hueso grande.",
+            "pisiforme": "🦴 **Pisiforme (Carpo):** Hueso sesamoideo pequeño ubicado en la primera fila del carpo dentro del tendón flexor ulnar.",
+            "trapecio": "🦴 **Trapecio (Carpo):** Hueso de la segunda fila del carpo que articula con el I metacarpiano (pulgar), permitiendo oposición.",
+            "trapezoide": "🦴 **Trapezoide (Carpo):** Pequeño hueso carpiano de la fila distal ubicado entre trapecio y hueso grande.",
             "grande": "🦴 **Hueso Grande (Capitatum):** El mayor de los huesos del carpo, ubicado en el centro de la hilera distal.",
-            "ganchoso": "🦴 **Ganchoso (Hamatum):** Hueso carpiano de la fila distal que se distingue por su prominente gancho (apófisis unciforme) en la palma.",
-            "metacarpo": "🦴 **Metacarpo:** 5 huesos largos miniatura que forman el esqueleto de la palma de la mano (numerados del I al V desde el pulgar hacia el meñique).",
-            "falanges": "🦴 **Falanges (Manos y Pies):** Huesos largos miniatura que forman los dedos. Las manos y pies tienen 14 falanges cada uno (proximales, medias y distales; el dedo gordo / pulgar solo tiene proximal y distal).",
-            "tarso": "🦴 **Huesos del Tarso (Retropié y Mediopié):** 7 huesos cortos que forman la parte posterior y media del pie: Astrágalo, Calcáneo, Navicular, Cuboides y los 3 Cuneiformes.",
-            "astrágalo": "🦴 **Astrágalo (Talus):** Hueso del tarso que recibe el peso de la tibia, formando la articulación del tobillo (tibioastragalina).",
-            "talus": "🦴 **Astrágalo (Talus):** Hueso del tarso que recibe el peso de la tibia, formando la articulación del tobillo.",
-            "calcáneo": "🦴 **Calcáneo:** El hueso más grande y fuerte del pie, forma el talón y recibe el impacto al caminar (sitio de inserción del tendón de Aquiles).",
-            "navicular": "🦴 **Navicular (Escafoides tarsiano):** Hueso tarsiano con forma de bote situado entre el astrágalo y los tres cuneiformes.",
-            "cuboides": "🦴 **Cuboides:** Hueso tarsiano de forma cúbica situado en la parte lateral del pie, articula con el 4° y 5° metatarsiano.",
-            "cuneiforme": "🦴 **Cuneiformes (Cuñas):** Tres huesos del tarso (medial, intermedio y lateral) que articulan con los tres primeros metatarsianos.",
-            "metatarso": "🦴 **Metatarso:** 5 huesos largos que forman el esqueleto del metatarso del pie (antepié), numerados del I al V desde el dedo gordo (hallux).",
+            "ganchoso": "🦴 **Ganchoso (Hamatum):** Hueso carpiano con un gancho prominente en la palma (apófisis unciforme).",
+            "metacarpo": "🦴 **Metacarpo:** 5 huesos largos miniatura de la palma de la mano (del I al V desde el pulgar).",
+            "falanges": "🦴 **Falanges:** Huesos de los dedos de manos y pies (proximales, medias y distales).",
+            "tarso": "🦴 **Huesos del Tarso:** 7 huesos cortos del pie (Astrágalo, Calcáneo, Navicular, Cuboides y 3 Cuneiformes).",
+            "astrágalo": "🦴 **Astrágalo (Talus):** Hueso del tarso que recibe el peso de la tibia, formando la articulación del tobillo.",
+            "talus": "🦴 **Astrágalo (Talus):** Hueso del tarso que forma la articulación del tobillo con la tibia.",
+            "calcáneo": "🦴 **Calcáneo:** El hueso más fuerte del pie, forma el talón (sitio de inserción del tendón de Aquiles).",
+            "navicular": "🦴 **Navicular (Escafoides tarsiano):** Hueso tarsiano con forma de bote situado entre astrágalo y cuneiformes.",
+            "cuboides": "🦴 **Cuboides:** Hueso tarsiano lateral que articula con el 4.° y 5.° metatarsiano.",
+            "cuneiforme": "🦴 **Cuneiformes (Cuñas):** Tres huesos del tarso (medial, intermedio y lateral).",
+            "metatarso": "🦴 **Metatarso:** 5 huesos largos que forman el esqueleto del empeine del pie (del I al V).",
             "vómer": "🦴 **Vómer:** Hueso plano e impar que forma la porción posteroinferior del tabique nasal.",
-            "esfenoides": "🦴 **Esfenoides:** Hueso impar de la base del cráneo; contiene la silla turca (aloja la hipófisis).",
-            "etmoides": "🦴 **Etmoides:** Hueso poroso de la base del cráneo con lámina cribosa y apófisis crista galli.",
-            "coxal": "🦴 **Hueso Coxal (Ilíaco):** Formado por la fusión del ilion, isquion y pubis. Presenta la cresta ilíaca, la EIAS y el acetábulo.",
-            "atlas": "🦴 **Atlas (C1):** 1.ª vértebra cervical. No tiene cuerpo; permite el movimiento de flexión de cabeza ('sí').",
-            "axis": "🦴 **Axis (C2):** 2.ª vértebra cervical. Posee la apófisis odontoides (diente) que actúa como pivote para la rotación ('no')."
+            "esfenoides": "🦴 **Esfenoides:** Hueso de la base del cráneo con la silla turca que aloja la hipófisis.",
+            "etmoides": "🦴 **Etmoides:** Hueso poroso del techo nasal con lámina cribosa y apófisis crista galli.",
+            "coxal": "🦴 **Hueso Coxal (Ilíaco):** Formado por ilion, isquion y pubis. Presenta acetábulo y cresta ilíaca.",
+            "atlas": "🦴 **Atlas (C1):** 1.ª vértebra cervical. No tiene cuerpo; permite el movimiento de 'sí'.",
+            "axis": "🦴 **Axis (C2):** 2.ª vértebra cervical. Posee la apófisis odontoides para la rotación ('no').",
+
+            // REPAROS ÓSEOS ESPECÍFICOS
+            "cóndilo": "🔍 **Reparo Óseo (Cóndilo):** Eminencia o protuberancia articular redondeada que encaja en la cavidad de otro hueso (ej. cóndilos femorales y occipitales).",
+            "cabeza": "🔍 **Reparo Óseo (Cabeza):** Extremidad articular esférica y voluminosa situada al extremo de un cuello óseo (ej. cabeza del fémur y del húmero).",
+            "tróclea": "🔍 **Reparo Óseo (Tróclea):** Superficie articular en forma de polea que permite movimientos de bisagra (ej. tróclea humeral).",
+            "fosa": "🔍 **Reparo Óseo (Fosa):** Depresión o excavación amplia y poco profunda en la superficie del hueso (ej. fosa supraespinosa, fosa olecraneana).",
+            "tuberosidad": "🔍 **Reparo Óseo (Tuberosidad / Tubérculo):** Eminencia o saliente rugosa no articular destinada a la inserción de tendones y músculos (ej. tuberosidad tibial, tubérculo mayor).",
+            "trocánter": "🔍 **Reparo Óseo (Trocánter):** Prominencia grande y robusta exclusiva del fémur (mayor y menor) para inserción de potentes músculos de la cadera y muslo.",
+            "olécrano": "🔍 **Reparo Óseo (Olécrano):** Eminencia ósea voluminosa en el extremo proximal del cúbito que forma la punta del codo y frena la hiperextensión.",
+            "acetábulo": "🔍 **Reparo Óseo (Acetábulo / Cotilo):** Cavidad articular cóncava en forma de copa situada en el hueso coxal donde embona la cabeza del fémur (articulación coxofemoral).",
+            "cavidad glenoidea": "🔍 **Reparo Óseo (Cavidad Glenoidea):** Superficie articular cóncava y poco profunda de la escápula que recibe a la cabeza del húmero.",
+            "apófisis": "🔍 **Reparo Óseo (Apófisis / Proceso):** Saliente o prominencia voluminosa de un hueso que sirve para la articulación o inserción muscular (ej. apófisis mastoides, apófisis estiloides).",
+            "línea áspera": "🔍 **Reparo Óseo (Línea Áspera):** Cresta longitudinal rugosa situada en la cara posterior de la diáfisis del fémur para inserción de músculos aductores.",
+            "cresta ilíaca": "🔍 **Reparo Óseo (Cresta Ilíaca):** Borde superior arqueado y grueso del hueso ilíaco (coxal), punto clave de referencia clínica e inserción muscular.",
+            "maléolo": "🔍 **Reparo Óseo (Maléolo):** Prominencia ósea a ambos lados de la articulación del tobillo (maléolo medial en la tibia y maléolo lateral en el peroné)."
         };
 
         async function procesarConsulta() {
@@ -367,7 +383,7 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let respuesta = "💡 **Nota clínica para Terapia Física:** Analiza este elemento considerando sus superficies articulares, inserciones tendinosas y su relevancia en la biomecánica del movimiento.";
+                let respuesta = "💡 **Nota clínica para Terapia Física:** Este reparo u estructura ósea es clave para comprender la biomecánica articular, las palancas corporales y las zonas de inserción tendinosa.";
                 
                 const q = textoUsuario.toLowerCase();
                 for (let clave in diccionarioAnatomia) {
