@@ -49,16 +49,17 @@
                 <a href="#generalidades" class="block hover:text-white transition-colors py-1">1. Introducción y Componentes</a>
                 <a href="#clasificacion" class="block hover:text-white transition-colors py-1">2. Clasificación de Huesos</a>
                 <a href="#tejido" class="block hover:text-white transition-colors py-1">3. Hueso Compacto y Esponjoso</a>
-                <a href="#osificacion" class="block hover:text-white font-semibold text-slate-200 transition-colors py-1">4. Proceso de Osificación</a>
+                <a href="#osificacion" class="block hover:text-white transition-colors py-1">4. Proceso de Osificación</a>
                 <a href="#hueso-largo" class="block hover:text-white transition-colors py-1">5. Estructura Hueso Largo (3D)</a>
-                <a href="#organizacion" class="block hover:text-white transition-colors py-1">6. Esqueleto Axial y Apendicular</a>
-                <a href="#reparos" class="block hover:text-white transition-colors py-1">7. Generalidades de Reparos Óseos</a>
-                <a href="#craneo-cara" class="block hover:text-white transition-colors py-1">8. Cráneo, Cara y Reparos (3D)</a>
-                <a href="#columna" class="block hover:text-white transition-colors py-1">9. Columna Vertebral y Reparos</a>
-                <a href="#torax" class="block hover:text-white transition-colors py-1">10. Tórax y Reparos</a>
-                <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">11. Cintura Escapular y Miembros Sup.</a>
-                <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">12. Cintura Pélvica y Miembros Inf.</a>
-                <a href="#aistudio" class="block hover:text-white transition-colors py-1">13. Diccionario y Asistente en Vivo</a>
+                <a href="#modelo-general" class="block hover:text-white font-semibold text-slate-200 transition-colors py-1">6. Esqueleto Completo 3D (BioDigital)</a>
+                <a href="#organizacion" class="block hover:text-white transition-colors py-1">7. Esqueleto Axial y Apendicular</a>
+                <a href="#reparos" class="block hover:text-white transition-colors py-1">8. Generalidades de Reparos Óseos</a>
+                <a href="#craneo-cara" class="block hover:text-white transition-colors py-1">9. Cráneo, Cara y Reparos (3D)</a>
+                <a href="#columna" class="block hover:text-white transition-colors py-1">10. Columna Vertebral y Reparos</a>
+                <a href="#torax" class="block hover:text-white transition-colors py-1">11. Tórax y Reparos</a>
+                <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">12. Cintura Escapular y Miembros Sup.</a>
+                <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">13. Cintura Pélvica y Miembros Inf.</a>
+                <a href="#aistudio" class="block hover:text-white transition-colors py-1">14. Diccionario y Asistente en Vivo</a>
             </nav>
         </aside>
 
@@ -68,7 +69,7 @@
             <!-- Buscador Global en Tiempo Real -->
             <div class="mb-8 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-lg">
                 <div class="relative">
-                    <input type="text" id="search-input" placeholder="🔍 Busca osificación, cartílago, osteoblastos, hueso, reparo..." 
+                    <input type="text" id="search-input" placeholder="🔍 Busca osificación, esqueleto, cráneo, carpo, tarso, reparo..." 
                            class="w-full bg-slate-950 text-slate-200 text-sm md:text-base rounded-lg px-4 py-3 pl-10 outline-none border border-slate-700 focus:border-slate-500 transition-colors">
                     <svg class="w-5 h-5 text-slate-400 absolute left-3 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
@@ -106,36 +107,33 @@
                     </div>
                 </section>
 
-                <!-- NUEVA SECCIÓN: OSIFICACIÓN -->
                 <section id="osificacion" class="searchable-section section-card border-slate-500 bg-slate-900 shadow-lg">
                     <h2 class="text-2xl font-bold text-white mb-4">4. Proceso de Osificación (Formación y Crecimiento Óseo)</h2>
-                    <p class="text-slate-300 mb-4">La osificación u osteogénesis es el proceso de formación del tejido óseo a partir de la semana 6-8 del desarrollo embrionario y continúa durante el crecimiento.</p>
+                    <p class="text-slate-300 mb-4">La osificación u osteogénesis es el proceso de formación del tejido óseo a partir de la semana 6-8 del desarrollo embrionario.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300 mb-4">
                         <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
                             <strong class="text-white block mb-2 text-base">A. Osificación Intramembranosa:</strong>
-                            • Ocurre directamente sobre moldes de tejido mesenquimatoso (membranas).<br>
-                            • Forma los <strong>huesos planos del cráneo</strong>, la mandíbula y partes de la clavícula.<br>
-                            • Las células mesenquimatosas se diferencian en osteoblastos que secretan matriz ósea.
+                            • Ocurre directamente sobre moldes de tejido mesenquimatoso.<br>
+                            • Forma los <strong>huesos planos del cráneo</strong> y la mandíbula.
                         </div>
                         <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
                             <strong class="text-white block mb-2 text-base">B. Osificación Endocondral:</strong>
                             • Se forma a partir de un molde previo de <strong>cartílago hialino</strong>.<br>
-                            • Es el proceso mediante el cual se forman la gran mayoría de los huesos del esqueleto (huesos largos y cortos).<br>
-                            • Inicia con la formación de un centro de osificación primario en la diáfisis y secundarios en las epífisis.
+                            • Da origen a la gran mayoría de huesos del esqueleto (largos y cortos).
                         </div>
                     </div>
 
                     <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 text-sm text-slate-300">
-                        <h3 class="font-bold text-white mb-2 text-base">Crecimiento Óseo (Longitud y Grosor):</h3>
-                        • <strong>Crecimiento Longitudinal (en largo):</strong> Ocurre en la placa epifisaria (cartílago de crecimiento) ubicada entre la epífisis y la diáfisis mediante proliferación celular cartilaginosa que posteriormente se osifica.<br>
-                        • <strong>Crecimiento de Grosor (en espesor / aposicional):</strong> Los osteoblastos del periostio depositan nuevo tejido óseo en la superficie externa mientras los osteoclastos ensanchan la cavidad medular desde el interior.
+                        <h3 class="font-bold text-white mb-2 text-base">Crecimiento Óseo:</h3>
+                        • <strong>Longitudinal:</strong> En la placa epifisaria (cartílago de crecimiento).<br>
+                        • <strong>En Grosor:</strong> Mediante osificación aposicional a través del periostio.
                     </div>
                 </section>
 
                 <section id="hueso-largo" class="searchable-section section-card">
                     <h2 class="text-2xl font-bold text-white mb-4">5. Partes de un Hueso Largo Típico</h2>
-                    <p class="text-sm text-slate-400 mb-4">Interactúa con el modelo 3D táctil:</p>
+                    <p class="text-sm text-slate-400 mb-4">Interactúa con el modelo 3D táctil del hueso:</p>
                     <div class="w-full h-[400px] md:h-[450px] bg-slate-950 border border-slate-700 rounded-xl relative overflow-hidden flex flex-col md:flex-row shadow-lg mb-6">
                         <div class="absolute top-4 left-4 z-10">
                             <button id="btn-xray" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 px-3 py-1.5 rounded-lg text-sm transition-colors shadow-lg">
@@ -156,14 +154,26 @@
                     </div>
                 </section>
 
+                <!-- NUEVA SECCIÓN: MODELO 3D GENERAL (BIODIGITAL) -->
+                <section id="modelo-general" class="searchable-section section-card border-brand-500 bg-slate-900 shadow-xl">
+                    <h2 class="text-2xl font-bold text-white mb-2">6. Modelo 3D Interactivo: Sistema Esquelético Completo</h2>
+                    <p class="text-sm text-slate-400 mb-4">Visualizador interactivo completo del esqueleto humano (cortesía de BioDigital Human).</p>
+                    
+                    <div class="w-full bg-slate-950 border border-slate-700 rounded-xl overflow-hidden shadow-lg">
+                        <div class="relative w-full h-[450px] md:h-[600px]">
+                            <iframe class="absolute top-0 left-0 w-full h-full" src="https://human.biodigital.com/widget/?be=2Scq&amp;s=female&amp;background.colors=0,0,0,1,0,0,0,1&amp;initial.hand-hint=true&amp;ui-fullscreen=true&amp;ui-center=false&amp;ui-object-tree=false&amp;ui-dissect=true&amp;ui-zoom=true&amp;ui-help=true&amp;ui-tools-display=primary&amp;ui-info=true&amp;uaid=3M4a0" title="Sistema esquelético" width="100%" height="100%" loading="lazy" sandbox="allow-modals allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
+                        </div>
+                    </div>
+                </section>
+
                 <section id="organizacion" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">6. Organización del Sistema: Axial y Apendicular</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">7. Organización del Sistema: Axial y Apendicular</h2>
                     <p class="text-slate-300 mb-2"><strong>Esqueleto Axial (80 huesos):</strong> Cráneo, columna vertebral, costillas y esternón.</p>
                     <p class="text-slate-300"><strong>Esqueleto Apendicular (126 huesos):</strong> Miembros superiores, inferiores y cinturas.</p>
                 </section>
 
                 <section id="reparos" class="searchable-section section-card border-slate-500 bg-slate-900 shadow-lg">
-                    <h2 class="text-2xl font-bold text-white mb-4">7. Generalidades de Reparos Óseos (Formaciones Óseas)</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">8. Generalidades de Reparos Óseos (Formaciones Óseas)</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
                         <div class="bg-slate-800 p-3 rounded-lg border border-slate-700">
                             <strong>Superficies Articulares:</strong><br>
@@ -187,7 +197,7 @@
                 </section>
 
                 <section id="craneo-cara" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">8. Huesos del Cráneo, Cara y sus Reparos</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">9. Huesos del Cráneo, Cara y sus Reparos</h2>
                     <p class="text-slate-300 mb-2"><strong>Cráneo (8):</strong> Frontal, 2 Parietales, 2 Temporales, Occipital, Esfenoides, Etmoides.</p>
                     <p class="text-slate-300 mb-4"><strong>Cara (14):</strong> 2 Nasales, 2 Maxilares, 2 Cigomáticos, Mandíbula, 2 Lagrimales, 2 Palatinos, 2 Cornetes inferiores, Vómer.</p>
                     
@@ -208,7 +218,7 @@
                 </section>
 
                 <section id="columna" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">9. Columna Vertebral y Reparos por Región</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">10. Columna Vertebral y Reparos por Región</h2>
                     <p class="text-slate-300 mb-3">Consta de 33 vértebras: 7 cervicales, 12 torácicas, 5 lumbares, sacro y cóccix.</p>
                     
                     <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 mb-4 text-sm text-slate-300">
@@ -235,7 +245,7 @@
                 </section>
 
                 <section id="torax" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">10. Tórax Óseo y sus Reparos</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">11. Tórax Óseo y sus Reparos</h2>
                     <p class="text-slate-300 mb-3">Formado por el esternón y 12 pares de costillas.</p>
                     <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 text-sm text-slate-300">
                         <h3 class="font-bold text-white mb-2">Reparos Anatómicos del Tórax:</h3>
@@ -247,7 +257,7 @@
                 </section>
 
                 <section id="miembros-sup" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">11. Cintura Escapular y Miembros Superiores (Incluyendo Manos)</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">12. Cintura Escapular y Miembros Superiores (Incluyendo Manos)</h2>
                     <p class="text-slate-300 mb-3">Clavícula, escápula, húmero, radio, cúbito, carpos, metacarpos y falanges.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300 mb-4">
@@ -268,7 +278,7 @@
                 </section>
 
                 <section id="miembros-inf" class="searchable-section section-card">
-                    <h2 class="text-2xl font-bold text-white mb-4">12. Cintura Pélvica y Miembros Inferiores (Incluyendo Pies)</h2>
+                    <h2 class="text-2xl font-bold text-white mb-4">13. Cintura Pélvica y Miembros Inferiores (Incluyendo Pies)</h2>
                     <p class="text-slate-300 mb-3">Coxales, fémur, rótula, tibia, peroné, tarsos, metatarsos y falanges.</p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-300">
@@ -290,8 +300,8 @@
 
                 <!-- SECCIÓN DE DICCIONARIO Y ASISTENTE INTELIGENTE -->
                 <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
-                    <h2 class="text-2xl font-bold text-white mb-4">13. Diccionario y Asistente Anatómico Inteligente</h2>
-                    <p class="text-slate-300 mb-4">Escribe cualquier hueso, articulación, <strong>repro óseo</strong> o concepto de <strong>osificación</strong> (ej. <em>osificación</em>, <em>endocondral</em>, <em>tubérculo</em>, <em>trocánter</em>, <em>escafoides</em>) para consultar su definición técnica instantánea:</p>
+                    <h2 class="text-2xl font-bold text-white mb-4">14. Diccionario y Asistente Anatómico Inteligente</h2>
+                    <p class="text-slate-300 mb-4">Escribe cualquier hueso, articulación, <strong>reparo óseo</strong> o concepto de <strong>osificación</strong> para consultar su definición técnica instantánea:</p>
                     
                     <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-2xl mx-auto flex flex-col gap-3">
                         <div id="chat-box" class="h-64 overflow-y-auto bg-slate-900 p-3 rounded-lg border border-slate-800 flex flex-col gap-2 text-sm">
@@ -341,74 +351,36 @@
             searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones coincidentes.` : '';
         });
 
-        // --- DICCIONARIO ANATÓMICO LOCAL EXHAUSTIVO (INCLUYENDO OSIFICACIÓN) ---
+        // --- DICCIONARIO ANATÓMICO LOCAL EXHAUSTIVO ---
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('ai-user-input');
         const sendBtn = document.getElementById('ai-send-btn');
 
         const diccionarioAnatomia = {
-            // OSIFICACIÓN Y DESARROLLO
-            "osificación": "🦴 **Osificación (Osteogénesis):** Proceso de formación del tejido óseo. Se divide en osificación intramembranosa (huesos planos a partir de tejido mesenquimatoso) y endocondral (a partir de un molde de cartílago hialino para huesos largos).",
-            "osteogénesis": "🦴 **Osteogénesis (Osificación):** Proceso biológico de formación de hueso nuevo llevado a cabo por los osteoblastos.",
-            "endocondral": "🦴 **Osificación Endocondral:** Proceso donde el tejido óseo reemplaza a un molde previo de cartílago hialino; típico de huesos largos y de las extremidades.",
-            "intramembranosa": "🦴 **Osificación Intramembranosa:** Formación de hueso directamente a partir de membranas de tejido mesenquimatoso; da origen a los huesos planos del cráneo y la cara.",
-            "crecimiento": "🦴 **Crecimiento Óseo:** Se divide en longitudinal (en la placa epifisaria o cartílago de crecimiento) y en grosor o espesor (crecimiento aposicional mediante el periostio).",
-            "placa epifisaria": "🦴 **Placa Epifisaria (Cartílago de crecimiento):** Zona de cartílago hialino situada entre epífisis y diáfisis responsable del aumento en longitud del hueso durante la infancia y adolescencia.",
-
-            // HUESOS PRINCIPALES
-            "húmero": "🦴 **Húmero:** Hueso largo del brazo. Reparos clave: Cabeza humeral, cuello quirúrgico, tubérculo mayor (troquiter) y menor (troquín) con la corredera bicipital, tróclea y capítulo distal.",
-            "fémur": "🦴 **Fémur:** Hueso del muslo. Posee cabeza femoral con fóvea capitis, trocánter mayor y menor, línea áspera y cóndilos medial y lateral.",
-            "radio": "🦴 **Radio:** Hueso lateral del antebrazo. Posee cabeza radial proximal en cúpula, tuberosidad bicipital y apófisis estiloides distal.",
-            "cúbito": "🦴 **Cúbito (Ulna):** Hueso medial del antebrazo. Destacan el olécrano (codo), apófisis coronoides y escotadura troclear.",
-            "ulna": "🦴 **Cúbito (Ulna):** Hueso medial del antebrazo. Destacan el olécrano (codo), apófisis coronoides y escotadura troclear.",
-            "escápula": "🦴 **Escápula (Omóplato):** Hueso plano triangular. Posee cavidad glenoidea, acromion, apófisis coracoides y espina escapular.",
-            "clavícula": "🦴 **Clavícula:** Hueso en 'S' que conecta el tórax con el hombro mediante articulaciones esternoclavicular y acromioclavicular.",
-            "tibia": "🦴 **Tibia:** Hueso principal de la pierna que soporta peso. Posee meseta tibial, tuberosidad anterior y maléolo medial.",
-            "peroné": "🦴 **Peroné (Fíbula):** Hueso lateral delgado de la pierna que no soporta peso directo. Su extremo distal forma el maléolo lateral.",
-            "fíbula": "🦴 **Peroné (Fíbula):** Hueso lateral delgado de la pierna que soporta peso indirecto y forma el maléolo lateral.",
-            "rótula": "🦴 **Rótula (Patela):** Hueso sesamoideo más grande del cuerpo ubicado en el tendón del cuádriceps; protege la rodilla y aumenta la palanca.",
-            "patela": "🦴 **Rótula (Patela):** Hueso sesamoideo dentro del tendón del cuádriceps.",
-            "carpo": "🦴 **Huesos del Carpo (Muñeca):** 8 huesos cortos en dos filas: Proximal (Escafoides, Semilunar, Piramidal, Pisiforme) y Distal (Trapecio, Trapezoide, Hueso Grande, Ganchoso).",
-            "escafoides": "🦴 **Escafoides (Carpo):** Hueso con forma de barco en la fila proximal del carpo; se fractura con frecuencia en caídas con mano extendida.",
-            "semilunar": "🦴 **Semilunar (Carpo):** Hueso con forma de media luna en la primera fila del carpo; se articula con el radio.",
-            "piramidal": "🦴 **Piramidal (Carpo):** Hueso carpiano situado en la parte medial de la primera fila del carpo.",
-            "pisiforme": "🦴 **Pisiforme (Carpo):** Hueso sesamoideo pequeño ubicado en la primera fila del carpo dentro del tendón flexor ulnar.",
-            "trapecio": "🦴 **Trapecio (Carpo):** Hueso de la segunda fila del carpo que articula con el I metacarpiano (pulgar), permitiendo oposición.",
-            "trapezoide": "🦴 **Trapezoide (Carpo):** Pequeño hueso carpiano de la fila distal ubicado entre trapecio y hueso grande.",
-            "grande": "🦴 **Hueso Grande (Capitatum):** El mayor de los huesos del carpo, ubicado en el centro de la hilera distal.",
-            "ganchoso": "🦴 **Ganchoso (Hamatum):** Hueso carpiano con un gancho prominente en la palma (apófisis unciforme).",
-            "metacarpo": "🦴 **Metacarpo:** 5 huesos largos miniatura de la palma de la mano (del I al V desde el pulgar).",
-            "falanges": "🦴 **Falanges:** Huesos de los dedos de manos y pies (proximales, medias y distales).",
-            "tarso": "🦴 **Huesos del Tarso:** 7 huesos cortos del pie (Astrágalo, Calcáneo, Navicular, Cuboides y 3 Cuneiformes).",
-            "astrágalo": "🦴 **Astrágalo (Talus):** Hueso del tarso que recibe el peso de la tibia, formando la articulación del tobillo.",
-            "talus": "🦴 **Astrágalo (Talus):** Hueso del tarso que forma la articulación del tobillo con la tibia.",
-            "calcáneo": "🦴 **Calcáneo:** El hueso más fuerte del pie, forma el talón (sitio de inserción del tendón de Aquiles).",
-            "navicular": "🦴 **Navicular (Escafoides tarsiano):** Hueso tarsiano con forma de bote situado entre astrágalo y cuneiformes.",
-            "cuboides": "🦴 **Cuboides:** Hueso tarsiano lateral que articula con el 4.° y 5.° metatarsiano.",
-            "cuneiforme": "🦴 **Cuneiformes (Cuñas):** Tres huesos del tarso (medial, intermedio y lateral).",
-            "metatarso": "🦴 **Metatarso:** 5 huesos largos que forman el esqueleto del empeine del pie (del I al V).",
-            "vómer": "🦴 **Vómer:** Hueso plano e impar que forma la porción posteroinferior del tabique nasal.",
-            "esfenoides": "🦴 **Esfenoides:** Hueso de la base del cráneo con la silla turca que aloja la hipófisis.",
-            "etmoides": "🦴 **Etmoides:** Hueso poroso del techo nasal con lámina cribosa y apófisis crista galli.",
-            "coxal": "🦴 **Hueso Coxal (Ilíaco):** Formado por ilion, isquion y pubis. Presenta acetábulo y cresta ilíaca.",
-            "atlas": "🦴 **Atlas (C1):** 1.ª vértebra cervical. No tiene cuerpo; permite el movimiento de 'sí'.",
-            "axis": "🦴 **Axis (C2):** 2.ª vértebra cervical. Posee la apófisis odontoides para la rotación ('no').",
-
-            // REPAROS ÓSEOS ESPECÍFICOS
-            "tubérculo": "🔍 **Reparo Óseo (Tubérculo):** Eminencia o saliente redondeada, pequeña y rugosa, no articular, destinada a la inserción de tendones y ligamentos.",
-            "tuberosidad": "🔍 **Reparo Óseo (Tuberosidad):** Eminencia grande, rugosa y prominente, no articular, destinada a la inserción de potentes músculos.",
-            "cóndilo": "🔍 **Reparo Óseo (Cóndilo):** Eminencia o protuberancia articular redondeada que encaja en la cavidad de otro hueso.",
-            "cabeza": "🔍 **Reparo Óseo (Cabeza):** Extremidad articular esférica y voluminosa situada al extremo de un cuello óseo.",
-            "tróclea": "🔍 **Reparo Óseo (Tróclea):** Superficie articular en forma de polea que permite movimientos de bisagra.",
-            "fosa": "🔍 **Reparo Óseo (Fosa):** Depresión o excavación amplia y poco profunda en la superficie del hueso.",
-            "trocánter": "🔍 **Reparo Óseo (Trocánter):** Prominencia grande y robusta exclusiva del fémur (mayor y menor).",
-            "olécrano": "🔍 **Reparo Óseo (Olécrano):** Eminencia ósea voluminosa en el extremo proximal del cúbito que forma la punta del codo.",
-            "acetábulo": "🔍 **Reparo Óseo (Acetábulo):** Cavidad articular cóncava en forma de copa situada en el hueso coxal para la cabeza del fémur.",
-            "cavidad glenoidea": "🔍 **Reparo Óseo (Cavidad Glenoidea):** Superficie articular cóncava de la escápula que recibe a la cabeza del húmero.",
-            "apófisis": "🔍 **Reparo Óseo (Apófisis / Proceso):** Saliente o prominencia voluminosa de un hueso para articulación o inserción muscular.",
-            "línea áspera": "🔍 **Reparo Óseo (Línea Áspera):** Cresta longitudinal rugosa en la cara posterior de la diáfisis del fémur.",
-            "cresta ilíaca": "🔍 **Reparo Óseo (Cresta Ilíaca):** Borde superior arqueado y grueso del hueso ilíaco.",
-            "maléolo": "🔍 **Reparo Óseo (Maléolo):** Prominencia ósea a ambos lados de la articulación del tobillo (medial y lateral)."
+            "osificación": "🦴 **Osificación (Osteogénesis):** Proceso de formación del tejido óseo. Se divide en osificación intramembranosa y endocondral.",
+            "endocondral": "🦴 **Osificación Endocondral:** Proceso donde el tejido óseo reemplaza un molde de cartílago hialino (huesos largos).",
+            "intramembranosa": "🦴 **Osificación Intramembranosa:** Formación de hueso directo sobre membranas mesenquimatosas (huesos planos del cráneo).",
+            "crecimiento": "🦴 **Crecimiento Óseo:** Longitudinal (en placa epifisaria) y en grosor (aposicional mediante el periostio).",
+            "húmero": "🦴 **Húmero:** Hueso largo del brazo. Reparos clave: Cabeza, cuello quirúrgico, tubérculo mayor y menor, tróclea y capítulo.",
+            "fémur": "🦴 **Fémur:** Hueso del muslo. Posee cabeza femoral, trocánter mayor y menor, línea áspera y cóndilos.",
+            "radio": "🦴 **Radio:** Hueso lateral del antebrazo con cabeza proximal y apófisis estiloides distal.",
+            "cúbito": "🦴 **Cúbito (Ulna):** Hueso medial del antebrazo con olécrano y escotadura troclear.",
+            "escápula": "🦴 **Escápula:** Hueso plano triangular con cavidad glenoidea, acromion y apófisis coracoides.",
+            "tibia": "🦴 **Tibia:** Hueso principal de la pierna con meseta tibial y maléolo medial.",
+            "peroné": "🦴 **Peroné (Fíbula):** Hueso lateral delgado con maléolo lateral.",
+            "rótula": "🦴 **Rótula (Patela):** Hueso sesamoideo en el tendón del cuádriceps.",
+            "carpo": "🦴 **Huesos del Carpo (8):** Escafoides, Semilunar, Piramidal, Pisiforme, Trapecio, Trapezoide, Hueso Grande y Ganchoso.",
+            "escafoides": "🦴 **Escafoides:** Hueso carpiano proximal que se fractura frecuentemente en caídas con mano extendida.",
+            "tarso": "🦴 **Huesos del Tarso (7):** Astrágalo, Calcáneo, Navicular, Cuboides y 3 Cuneiformes.",
+            "calcáneo": "🦴 **Calcáneo:** Hueso del talón, sitio de inserción del tendón de Aquiles.",
+            "tubérculo": "🔍 **Reparo Óseo (Tubérculo):** Eminencia pequeña y rugosa para inserción tendinosa.",
+            "tuberosidad": "🔍 **Reparo Óseo (Tuberosidad):** Eminencia grande y rugosa para inserción muscular.",
+            "cóndilo": "🔍 **Reparo Óseo (Cóndilo):** Protuberancia articular redondeada.",
+            "cabeza": "🔍 **Reparo Óseo (Cabeza):** Extremidad articular esférica.",
+            "trocánter": "🔍 **Reparo Óseo (Trocánter):** Prominencia robusta exclusiva del fémur.",
+            "olécrano": "🔍 **Reparo Óseo (Olécrano):** Punta del codo en el cúbito.",
+            "acetábulo": "🔍 **Reparo Óseo (Acetábulo):** Cavidad del coxal para la cabeza del fémur.",
+            "cavidad glenoidea": "🔍 **Reparo Óseo (Cavidad Glenoidea):** Superficie articular de la escápula para el húmero."
         };
 
         async function procesarConsulta() {
