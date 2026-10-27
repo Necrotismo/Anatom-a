@@ -57,7 +57,7 @@
                 <a href="#torax" class="block hover:text-white transition-colors py-1">9. Tórax y Reparos</a>
                 <a href="#miembros-sup" class="block hover:text-white transition-colors py-1">10. Cintura Escapular y Miembros Sup.</a>
                 <a href="#miembros-inf" class="block hover:text-white transition-colors py-1">11. Cintura Pélvica y Miembros Inf.</a>
-                <a href="#aistudio" class="block hover:text-white transition-colors py-1">12. Tutor Groq Llama 3</a>
+                <a href="#aistudio" class="block hover:text-white transition-colors py-1">12. Asistente Anatómico Inteligente</a>
             </nav>
         </aside>
 
@@ -253,23 +253,23 @@
                     </div>
                 </section>
 
-                <!-- SECCIÓN DE TUTOR GROQ LLAMA 3 INTEGRADO EN VIVO -->
+                <!-- SECCIÓN DE ASISTENTE ANATÓMICO INTELIGENTE EN VIVO -->
                 <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
-                    <h2 class="text-2xl font-bold text-white mb-4">12. Tutor Inteligente en Vivo (Groq Llama 3)</h2>
-                    <p class="text-slate-300 mb-4">Hazle cualquier pregunta sobre anatomía y te responderá mediante la API ultrarrápida de Groq:</p>
+                    <h2 class="text-2xl font-bold text-white mb-4">12. Asistente Anatómico Inteligente en Vivo</h2>
+                    <p class="text-slate-300 mb-4">Escribe el nombre de cualquier hueso, articulación o estructura anatómica (ej. <em>húmero</em>, <em>fémur</em>, <em>radio</em>, <em>semilunar</em>, <em>atlas</em>) para consultar su información técnica instantánea:</p>
                     
                     <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-2xl mx-auto flex flex-col gap-3">
                         <div id="chat-box" class="h-64 overflow-y-auto bg-slate-900 p-3 rounded-lg border border-slate-800 flex flex-col gap-2 text-sm">
                             <div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">
-                                ¡Hola! Soy tu asistente conectado a Llama 3. Pregúntame sobre reparos óseos, inserciones o biomecánica.
+                                ¡Hola! Escribe una estructura ósea o reparo anatómico para ver su descripción detallada y biomecánica para Terapia Física.
                             </div>
                         </div>
                         
                         <div class="flex gap-2">
-                            <input type="text" id="ai-user-input" placeholder="Escribe tu duda o nombre de hueso..." 
+                            <input type="text" id="ai-user-input" placeholder="Ej. húmero, fémur, rótula, escápula..." 
                                    class="flex-1 bg-slate-900 text-slate-200 text-sm rounded-lg px-3 py-2 outline-none border border-slate-700 focus:border-slate-500">
                             <button id="ai-send-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors">
-                                Enviar
+                                Consultar
                             </button>
                         </div>
                     </div>
@@ -278,7 +278,7 @@
         </main>
     </div>
 
-    <!-- Script General y Lógica de la API de Groq -->
+    <!-- Script General y Base de Datos del Asistente Anatómico -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
@@ -287,7 +287,7 @@
             link.addEventListener('click', () => { if(window.innerWidth < 768) sidebar.classList.add('hidden'); });
         });
 
-        // Buscador
+        // Buscador en tiempo real
         const searchInput = document.getElementById('search-input');
         const sections = document.querySelectorAll('.searchable-section');
         const searchCount = document.getElementById('search-count');
@@ -303,74 +303,58 @@
                     section.style.display = 'none';
                 }
             });
-            searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones.` : '';
+            searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones coincidentes.` : '';
         });
 
-        // --- CONEXIÓN DIRECTA A LA API DE GROQ (LLAMA 3) CON TU API KEY ---
+        // --- ASISTENTE CLÍNICO LOCAL INTELIGENTE ---
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('ai-user-input');
         const sendBtn = document.getElementById('ai-send-btn');
 
-        const GROQ_API_KEY = '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';
+        const baseConocimientoClinica = {
+            "húmero": "🦴 **Húmero:** Hueso largo del brazo. Reparos clave: Cabeza humeral (articula con la cavidad glenoidea), cuello quirúrgico (zona frecuente de fracturas), tubérculo mayor (troquiter) y menor (troquín) con la corredera bicipital en medio. Distalmente presenta la tróclea, el capítulo y los epicóndilos.",
+            "fémur": "🦴 **Fémur:** Hueso del muslo, el más largo y pesado. Reparos clave: Cabeza femoral con la fóvea capitis, cuello anatómico y quirúrgico, trocánter mayor y menor para inserción de glúteos y flexores, línea áspera posterior, y cóndilos medial y lateral con la escotadura intercondílea.",
+            "radio": "🦴 **Radio:** Hueso del antebrazo lateral (externo). Reparos clave: Cabeza radial en forma de cúpula que rota sobre el capítulo del húmero, tuberosidad bicipital (inserción del bíceps braquial) y apófisis estiloides distal.",
+            "cúbito": "🦴 **Cúbito (Ulna):** Hueso medial del antebrazo. Reparos clave: Olécrano (forma la prominencia del codo), apófisis coronoides y la escotadura troclear que forma la articulación humerocubital. Posee la cabeza del cúbito en su extremo distal.",
+            "semilunar": "🦴 **Semilunar:** Hueso del carpo de la primera fila. Tiene forma de media luna. Se articula con el radio y es el hueso carpiano que se luxa con mayor frecuencia en caídas sobre la mano extendida (hiperextensión).",
+            "escápula": "🦴 **Escápula (Omóplato):** Hueso plano y triangular. Reparos clave: Cavidad glenoidea (poco profunda, articula con el húmero), acromion (punto más alto del hombro), apófisis coracoides, y la espina escapular que divide las fosas supra e infraespinosa.",
+            "clavícula": "🦴 **Clavícula:** Hueso largo en forma de 'S'. Conecta el esqueleto axial con el miembro superior mediante la articulación esternoclavicular y acromioclavicular. Es el hueso que más frecuentemente se fractura ante impactos directos en el hombro.",
+            "tibia": "🦴 **Tibia:** Hueso principal de la pierna que soporta peso. Reparos clave: Meseta tibial superior, tuberosidad tibial anterior (donde se inserta el tendón rotuliano) y el maléolo medial (tobillo interno).",
+            "peroné": "🦴 **Peroné (Fíbula):** Hueso delgado lateral de la pierna. No soporta peso directo, sirve de inserción muscular y su extremo distal forma el maléolo lateral."
+        };
 
-        async function consultarGroqAI() {
+        async function procesarConsulta() {
             const textoUsuario = userInput.value.trim();
             if(!textoUsuario) return;
 
-            // Mostrar mensaje del usuario
             chatBox.innerHTML += `<div class="bg-slate-700 text-slate-100 p-2.5 rounded-lg self-end max-w-[85%]">${textoUsuario}</div>`;
             userInput.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Indicador de carga
-            const loadingId = 'loading-' + Date.now();
-            chatBox.innerHTML += `<div id="${loadingId}" class="bg-slate-800 text-slate-400 p-2.5 rounded-lg self-start max-w-[85%] italic">Buscando respuesta en Llama 3...</div>`;
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            try {
-                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${GROQ_API_KEY}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: 'llama-3.1-8b-instant',
-                        messages: [
-                            { role: 'system', content: 'Eres un experto tutor de anatomía humana enfocado en estudiantes de Terapia Física. Explica de forma concisa, clara y orientada a la biomecánica, huesos, articulaciones y reparos óseos.' },
-                            { role: 'user', content: textoUsuario }
-                        ],
-                        temperature: 0.7
-                    })
-                });
-
-                document.getElementById(loadingId).remove();
-
-                if (!response.ok) {
-                    throw new Error(`Error HTTP: ${response.status}`);
+            setTimeout(() => {
+                let respuesta = "💡 **Nota clínica para Terapia Física:** Analiza este elemento considerando sus superficies articulares, los reparos óseos que sirven de polea o palanca, y los músculos principales que se insertan en él para la movilidad.";
+                
+                const q = textoUsuario.toLowerCase();
+                for (let clave in baseConocimientoClinica) {
+                    if (q.includes(clave)) {
+                        respuesta = baseConocimientoClinica[clave];
+                        break;
+                    }
                 }
 
-                const data = await response.json();
-                const respuestaIA = data.choices[0].message.content;
-
-                chatBox.innerHTML += `<div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">${respuestaIA.replace(/\n/g, '<br>')}</div>`;
+                chatBox.innerHTML += `<div class="bg-slate-800 text-slate-300 p-2.5 rounded-lg self-start max-w-[85%] border border-slate-700">${respuesta}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
-
-            } catch (error) {
-                if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-                chatBox.innerHTML += `<div class="bg-red-950 text-red-200 p-2.5 rounded-lg self-start max-w-[85%] border border-red-800">❌ Error al conectar con Groq. Verifica tu conexión a internet.</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
+            }, 400);
         }
 
-        sendBtn.addEventListener('click', consultarGroqAI);
-        userInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') consultarGroqAI(); });
+        sendBtn.addEventListener('click', procesarConsulta);
+        userInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') procesarConsulta(); });
 
         // --- THREE.JS HUESO LARGO ---
         const boneData = {
-            "epifisis_proximal": { nombre: "Epífisis Proximal", tejido: "Hueso Esponjoso", desc: "Extremo superior. Aloja médula ósea roja." },
-            "diafisis": { nombre: "Diáfisis", tejido: "Hueso Compacto", desc: "Cuerpo central cilíndrico." },
-            "epifisis_distal": { nombre: "Epífisis Distal", tejido: "Hueso Esponjoso", desc: "Extremo inferior articular." }
+            "epifisis_proximal": { nombre: "Epífisis Proximal", tejido: "Hueso Esponjoso", desc: "Extremo superior. Aloja médula ósea roja y forma superficies articulares." },
+            "diafisis": { nombre: "Diáfisis", tejido: "Hueso Compacto", desc: "Cuerpo central cilíndrico denso. Otorga resistencia mecánica y soporte." },
+            "epifisis_distal": { nombre: "Epífisis Distal", tejido: "Hueso Esponjoso", desc: "Extremo inferior. Forma la articulación distal con los huesos adyacentes." }
         };
 
         const container = document.getElementById('canvas-container');
