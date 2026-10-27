@@ -47,7 +47,7 @@
             <a href="#torax" class="block hover:text-white transition-colors">9. Tórax</a>
             <a href="#miembros-sup" class="block hover:text-white transition-colors">10. Cintura Escapular y Miembros Sup.</a>
             <a href="#miembros-inf" class="block hover:text-white transition-colors">11. Cintura Pélvica y Miembros Inf.</a>
-            <a href="#aistudio" class="block hover:text-white transition-colors">12. Recursos y Google AI Studio</a>
+            <a href="#aistudio" class="block hover:text-white transition-colors">12. Tutor Inteligente</a>
         </nav>
     </aside>
 
@@ -186,16 +186,37 @@
         </section>
 
         <section id="aistudio" class="section-card border-slate-600 bg-slate-900">
-            <h2 class="text-2xl font-bold text-white mb-4">12. Recursos de Estudio e Integración con AI Studio</h2>
-            <p class="text-slate-300 mb-4">Este sitio web ha sido optimizado con herramientas modulares y código estructurado listo para alojarse en GitHub Pages. Puedes integrar modelos de lenguaje avanzados mediante la API de Google AI Studio para potenciar proyectos de repaso automatizado.</p>
-            <div class="bg-slate-800 p-4 rounded-lg border border-slate-700 text-sm text-slate-300">
-                <span class="font-bold text-white block mb-1">Nota de desarrollo:</span> Configurado con HTML5, Tailwind CSS y Three.js para ofrecer una experiencia visual ligera y responsiva para estudiantes de anatomía.
+            <h2 class="text-2xl font-bold text-white mb-4">12. Tutor de Anatomía con Inteligencia Artificial</h2>
+            <p class="text-slate-300 mb-4">Escribe cualquier duda sobre los huesos, articulaciones o reparos óseos para consultarla con el asistente inteligente:</p>
+            
+            <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-xl mx-auto flex flex-col gap-3">
+                <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-sm font-bold text-white">Asistente de Terapia Física</span>
+                </div>
+                
+                <textarea id="ai-query-input" rows="3" placeholder="Ej. ¿Cuáles son los reparos óseos principales del fémur?" 
+                          class="w-full bg-slate-900 text-slate-200 text-sm rounded-lg p-3 outline-none border border-slate-700 focus:border-slate-500 resize-none"></textarea>
+                
+                <button id="ai-launch-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+                    Consultar con IA
+                </button>
             </div>
         </section>
 
     </main>
 
     <script>
+        // --- LÓGICA DE CONSULTA SEGURA CON IA ---
+        document.getElementById('ai-launch-btn').addEventListener('click', () => {
+            const query = document.getElementById('ai-query-input').value.trim();
+            const promptText = query ? query : "Explícame los puntos clave del sistema óseo para terapia física.";
+            const fullPrompt = `Actúa como un experto en anatomía humana para estudiantes de Terapia Física. Responde de forma clara y detallada lo siguiente: ${promptText}`;
+            
+            const url = `https://gemini.google.com/app?q=${encodeURIComponent(fullPrompt)}`;
+            window.open(url, '_blank');
+        });
+
         // --- LÓGICA DEL MODELO 3D (THREE.JS) HUESO LARGO ---
         const boneData = {
             "epifisis_proximal": { nombre: "Epífisis Proximal", tejido: "Hueso Esponjoso", desc: "Extremo superior del hueso. Provee área para articulaciones y alberga médula ósea roja." },
