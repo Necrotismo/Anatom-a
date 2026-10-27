@@ -256,7 +256,7 @@
                 <!-- SECCIÓN DE ASISTENTE ANATÓMICO INTELIGENTE EN VIVO -->
                 <section id="aistudio" class="searchable-section section-card border-slate-600 bg-slate-900">
                     <h2 class="text-2xl font-bold text-white mb-4">12. Asistente Anatómico Inteligente en Vivo</h2>
-                    <p class="text-slate-300 mb-4">Escribe el nombre de cualquier hueso, articulación o estructura anatómica (ej. <em>húmero</em>, <em>fémur</em>, <em>radio</em>, <em>semilunar</em>, <em>atlas</em>) para consultar su información técnica instantánea:</p>
+                    <p class="text-slate-300 mb-4">Escribe el nombre de cualquier hueso, articulación o estructura anatómica (ej. <em>húmero</em>, <em>fémur</em>, <em>vómer</em>, <em>esfenoides</em>, <em>coxal</em>) para consultar su información técnica instantánea:</p>
                     
                     <div class="bg-slate-950 border border-slate-700 rounded-xl p-4 max-w-2xl mx-auto flex flex-col gap-3">
                         <div id="chat-box" class="h-64 overflow-y-auto bg-slate-900 p-3 rounded-lg border border-slate-800 flex flex-col gap-2 text-sm">
@@ -266,7 +266,7 @@
                         </div>
                         
                         <div class="flex gap-2">
-                            <input type="text" id="ai-user-input" placeholder="Ej. húmero, fémur, rótula, escápula..." 
+                            <input type="text" id="ai-user-input" placeholder="Ej. húmero, fémur, vómer, escápula..." 
                                    class="flex-1 bg-slate-900 text-slate-200 text-sm rounded-lg px-3 py-2 outline-none border border-slate-700 focus:border-slate-500">
                             <button id="ai-send-btn" class="bg-slate-700 hover:bg-slate-600 text-white font-medium px-4 py-2 rounded-lg text-sm transition-colors">
                                 Consultar
@@ -278,11 +278,11 @@
         </main>
     </div>
 
-    <!-- Script General y Base de Datos del Asistente Anatómico -->
+    <!-- Script General y Base de Datos Ampliada del Asistente Anatómico -->
     <script>
         const menuBtn = document.getElementById('menu-btn');
         const sidebar = document.getElementById('sidebar');
-        menuBtn.addEventListener('click', () => sidebar.classList.toggle('hidden'));
+        menuBtn.getElementById = menuBtn.addEventListener('click', () => sidebar.classList.toggle('hidden'));
         sidebar.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => { if(window.innerWidth < 768) sidebar.classList.add('hidden'); });
         });
@@ -306,7 +306,7 @@
             searchCount.textContent = term !== '' ? `Se encontraron ${matches} secciones coincidentes.` : '';
         });
 
-        // --- ASISTENTE CLÍNICO LOCAL INTELIGENTE ---
+        // --- ASISTENTE CLÍNICO LOCAL INTELIGENTE (AMPLIADO) ---
         const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('ai-user-input');
         const sendBtn = document.getElementById('ai-send-btn');
@@ -320,7 +320,13 @@
             "escápula": "🦴 **Escápula (Omóplato):** Hueso plano y triangular. Reparos clave: Cavidad glenoidea (poco profunda, articula con el húmero), acromion (punto más alto del hombro), apófisis coracoides, y la espina escapular que divide las fosas supra e infraespinosa.",
             "clavícula": "🦴 **Clavícula:** Hueso largo en forma de 'S'. Conecta el esqueleto axial con el miembro superior mediante la articulación esternoclavicular y acromioclavicular. Es el hueso que más frecuentemente se fractura ante impactos directos en el hombro.",
             "tibia": "🦴 **Tibia:** Hueso principal de la pierna que soporta peso. Reparos clave: Meseta tibial superior, tuberosidad tibial anterior (donde se inserta el tendón rotuliano) y el maléolo medial (tobillo interno).",
-            "peroné": "🦴 **Peroné (Fíbula):** Hueso delgado lateral de la pierna. No soporta peso directo, sirve de inserción muscular y su extremo distal forma el maléolo lateral."
+            "peroné": "🦴 **Peroné (Fíbula):** Hueso delgado lateral de la pierna. No soporta peso directo, sirve de inserción muscular y su extremo distal forma el maléolo lateral.",
+            "vómer": "🦴 **Vómer:** Hueso plano e impar de la cara que forma la parte posterior e inferior del tabique nasal (junto con la lámina perpendicular del etmoides y el cartílago septal). Es fundamental para la división de las fosas nasales.",
+            "esfenoides": "🦴 **Esfenoides:** Hueso impar situado en la base del cráneo. Posee la **silla turca** (que aloja a la glándula hipófisis/pituitaria) y alas mayores y menores. Es un hueso clave que conecta el cráneo con la cara.",
+            "etmoides": "🦴 **Etmoides:** Hueso liviano y poroso situado en la parte anterior de la base del cráneo y techo de las fosas nasales. Posee la **lámina cribosa** (por donde pasan los filetes del nervio olfatorio) y la *apófisis crista galli*.",
+            "coxal": "🦴 **Hueso Coxal (Ilíaco):** Hueso plano y irregular formado por la fusión de tres huesos en el desarrollo: **Ilion, Isquion y Pubis**. Destacan la cresta ilíaca, la espina ilíaca anterosuperior (EIAS), el acetábulo (cavidad articular para la cadera) y el foramen obturador.",
+            "atlas": "🦴 **Atlas (C1):** Primera vértebra cervical. No posee cuerpo vertebral ni apófisis espinosa; tiene forma de anillo con masas laterales que se articulan superiormente con los cóndilos occipitales (permitiendo el movimiento de 'sí').",
+            "axis": "🦴 **Axis (C2):** Segunda vértebra cervical. Se caracteriza por presentar la **apófisis odontoides** (diente) en su cara superior, la cual actúa como eje de rotación para que el atlas y la cabeza giren de lado a lado (movimiento de 'no')."
         };
 
         async function procesarConsulta() {
